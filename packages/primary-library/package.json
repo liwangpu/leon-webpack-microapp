@@ -1,0 +1,25 @@
+{
+  "name": "primary-library",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "蒲立望60263 <liwang.pu@going-link.com>",
+  "homepage": "https://github.com/liwangpu/leon-webpack-microapp/tree/main/packages/primary-library#readme",
+  "license": "ISC",
+  "main": "lib/primary-library.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liwangpu/leon-webpack-microapp.git"
+  },
+  "scripts": {
+    "test": "node ./__tests__/primary-library.test.js"
+  },
+  "bugs": {
+    "url": "https://github.com/liwangpu/leon-webpack-microapp/issues"
+  }
+}

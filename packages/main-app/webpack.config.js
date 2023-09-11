@@ -1,15 +1,20 @@
 const path = require('path');
-const webpack = require('webpack');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
+const WRITE_TO_DISK = true;
 
 module.exports = (env) => {
   return {
     mode: 'development',
     devtool: false,
+    cache: {
+      type: 'filesystem',
+      cacheLocation: path.resolve(__dirname, '../../.cache/main-app'),
+    },
     optimization: {
-      runtimeChunk: 'single',
+      // runtimeChunk: 'single',
       splitChunks: {
         cacheGroups: {
           vendor: {
@@ -59,17 +64,21 @@ module.exports = (env) => {
         title: '应用',
         template: './public/index.html'
       }),
-      new CleanWebpackPlugin(),
+      WRITE_TO_DISK ? new CleanWebpackPlugin() : false,
     ],
     devServer: {
       static: {
         directory: path.join(__dirname, 'public'),
       },
       devMiddleware: {
-        writeToDisk: true,
+        writeToDisk: WRITE_TO_DISK,
       },
+      // contentBase: "/src/",
+      // inline: true,
+      // stats: "errors-only",
       historyApiFallback: true,
-      port: 9001,
+      hot: true,
+      port: 7101,
     },
   };
 };

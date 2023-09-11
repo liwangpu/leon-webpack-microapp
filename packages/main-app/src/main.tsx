@@ -2,6 +2,8 @@ import React, { Suspense } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 
+console.log(`2222:`,);
+
 import App from './app';
 import './styles.less';
 
