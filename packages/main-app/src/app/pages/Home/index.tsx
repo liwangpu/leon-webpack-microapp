@@ -1,5 +1,3 @@
-import { Button } from 'antd';
-// import { SimplePage } from 'leon-rc-toolkit';
 import React, { memo } from 'react';
 
 const SimpleComponent: React.FC = memo(props => {
@@ -10,16 +8,8 @@ const SimpleComponent: React.FC = memo(props => {
 
 
   return (
-    // <SimplePage header={(
-    //   <>
-    //     <Button type='primary' onClick={handleTest}>测试</Button>
-    //   </>
-    // )}>
-
-
-    // </SimplePage>
     <div>
-      3423324
+      home
     </div>
   );
 });

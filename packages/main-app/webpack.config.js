@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -9,12 +10,9 @@ module.exports = (env) => {
   return {
     mode: 'development',
     devtool: false,
-    cache: {
-      type: 'filesystem',
-      cacheLocation: path.resolve(__dirname, '../../.cache/main-app'),
-    },
+    cache: true,
     optimization: {
-      // runtimeChunk: 'single',
+      runtimeChunk: 'single',
       splitChunks: {
         cacheGroups: {
           vendor: {
@@ -52,9 +50,9 @@ module.exports = (env) => {
           ]
         },
         {
-          test: /\.tsx?$/,
-          use: 'ts-loader',
+          test: /\.[jt]sx?$/,
           exclude: /node_modules/,
+          loader: "babel-loader",
         },
       ],
     },
@@ -65,6 +63,7 @@ module.exports = (env) => {
         template: './public/index.html'
       }),
       WRITE_TO_DISK ? new CleanWebpackPlugin() : false,
+      new webpack.HotModuleReplacementPlugin(),
     ],
     devServer: {
       static: {

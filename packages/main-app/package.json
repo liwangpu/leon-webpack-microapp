@@ -17,10 +17,7 @@
     "mobx-state-tree": "^5.1.8",
     "lodash": "^4.17.21",
     "mobx": "^6.9.0",
-    "@faker-js/faker": "^8.0.2",
-    "leon-rc-toolkit": "^0.0.1",
-    "@ant-design/icons": "^5.1.4",
-    "antd": "^5.6.1"
+    "@faker-js/faker": "^8.0.2"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.195",
@@ -28,10 +25,15 @@
     "@types/react": "18.2.14",
     "@types/react-dom": "18.2.6",
     "@types/react-router-dom": "^5.3.3",
+    "@babel/preset-react": "^7.22.15",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1",
     "typescript": "5.1.6",
+    "babel-loader": "^9.1.2",
+    "@babel/core": "7.20.12",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-typescript": "^7.21.4",
     "ts-loader": "^9.4.4",
     "less": "^4.2.0",
     "css-loader": "^6.8.1",
