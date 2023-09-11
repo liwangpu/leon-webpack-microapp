@@ -1,0 +1,24 @@
+{
+  "name": "leon-webpack-microapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:app": "lerna run start --scope=main-app"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "lerna": "^7.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liwangpu/leon-webpack-microapp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liwangpu/leon-webpack-microapp/issues"
+  },
+  "homepage": "https://github.com/liwangpu/leon-webpack-microapp#readme"
+}
