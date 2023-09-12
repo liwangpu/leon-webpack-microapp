@@ -3,7 +3,8 @@ const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-
+const { dependencies } = require("./package.json");
+console.log(`dependencies:`,dependencies);
 const WRITE_TO_DISK = true;
 
 module.exports = (env) => {
@@ -28,7 +29,7 @@ module.exports = (env) => {
     },
     output: {
       publicPath: '/',
-      path: path.resolve(__dirname, '../../dist/main-app/'),
+      path: path.resolve(__dirname, '../../dist/main-app'),
       clean: true,
     },
     resolve: {

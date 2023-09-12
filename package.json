@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "lerna run start --scope=main-app"
+    "start": "lerna run start --scope=main-app",
+    "build:primary-library": "lerna run build --scope=primary-library"
   },
   "dependencies": {},
   "devDependencies": {
