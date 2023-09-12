@@ -25,11 +25,11 @@ module.exports = (env) => {
       }
     },
     entry: {
-      index: './src/main.tsx',
+      index: './src/main.ts',
     },
     output: {
       publicPath: '/',
-      path: path.resolve(__dirname, '../../dist/main-app'),
+      path: path.resolve(__dirname, '../../dist/light-app'),
       clean: false,
     },
     resolve: {
@@ -62,7 +62,7 @@ module.exports = (env) => {
         experimentalUseImportModule: false,
       }),
       new HtmlWebpackPlugin({
-        title: '应用',
+        title: 'Light测试',
         template: './public/index.html'
       }),
       new CleanWebpackPlugin(),
@@ -78,7 +78,7 @@ module.exports = (env) => {
       historyApiFallback: true,
       liveReload: false,
       hot: true,
-      port: 7101,
+      port: 7201,
     },
   };
 };

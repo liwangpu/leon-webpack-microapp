@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import styles from './index.module.less';
+// import styles from './index.module.less';
 
 // const routes: Array<IMenu> = [
 //   {
@@ -14,13 +14,16 @@ import styles from './index.module.less';
 
 const App = () => {
   return (
-    <div className={styles['app']}>
-      <div className={styles['app__navigation']}>
-        {/* <AppSidebar title='测试' logoUrl='/assets/images/lc-logo.svg' menus={routes} /> */}
-      </div>
-      <div className={styles['app__page']}>
-        <Outlet />
-      </div>
+    // <div className={styles['app']}>
+    //   <div className={styles['app__navigation']}>
+    //   </div>
+    //   <div className={styles['app__page']}>
+    //     <Outlet />
+    //   </div>
+    // </div>
+
+    <div>
+      <Outlet />
     </div>
   );
 }
