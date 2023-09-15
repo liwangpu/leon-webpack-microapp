@@ -24,11 +24,32 @@
       padding: 0;
       box-sizing: border-box;
     }
+
+    body {
+      padding: 18px;
+    }
+
+    .button-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .button-container>button {
+      margin-right: 10px;
+    }
+
+    button {
+      padding: 4px 6px;
+      cursor: pointer;
+    }
   </style>
 </head>
 
 <body>
-  <div id="root"></div>
+  <div class="button-container">
+    <button id="btnTest">测试</button>
+    <button id="btnLoadSecondaryLib">加载secondary模块</button>
+  </div>
 </body>
 
 </html>

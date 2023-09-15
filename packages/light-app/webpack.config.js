@@ -1,9 +1,11 @@
 const path = require('path');
 const webpack = require("webpack");
+const { ModuleFederationPlugin } = webpack.container;
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const { dependencies } = require("./package.json");
+
+// const { dependencies } = require("./package.json");
 
 const WRITE_TO_DISK = true;
 
@@ -11,7 +13,11 @@ module.exports = (env) => {
   return {
     mode: 'development',
     devtool: false,
-    cache: true,
+    // cache: false,
+    // target: 'web',
+    entry: {
+      index: './src/main.ts',
+    },
     optimization: {
       runtimeChunk: 'single',
       splitChunks: {
@@ -24,13 +30,14 @@ module.exports = (env) => {
         }
       }
     },
-    entry: {
-      index: './src/main.ts',
-    },
     output: {
-      publicPath: '/',
+      // publicPath: '/',
       path: path.resolve(__dirname, '../../dist/light-app'),
       clean: false,
+
+      // filename: '[name].bundle.js',
+      // path: path.resolve(__dirname, 'dist'),
+      // clean: true,
     },
     resolve: {
       extensions: ['.tsx', '.ts', '.js'],
@@ -38,46 +45,43 @@ module.exports = (env) => {
     module: {
       rules: [
         {
-          test: /\.less$/,
-          use: [
-            MiniCssExtractPlugin.loader,
-            {
-              loader: "css-loader",
-              options: {
-                sourceMap: false,
-              }
-            },
-            { loader: "less-loader", options: { sourceMap: false } },
-          ]
-        },
-        {
           test: /\.[jt]sx?$/,
           exclude: /node_modules/,
           loader: "babel-loader",
+          // options: {
+          //   cacheCompression: false,
+          //   cacheDirectory: true,
+          // },
         },
       ],
     },
     plugins: [
-      new MiniCssExtractPlugin({
-        experimentalUseImportModule: false,
+      // new MiniCssExtractPlugin({
+      //   experimentalUseImportModule: false,
+      // }),
+      new ModuleFederationPlugin({
+        name: 'app',
+        // filename: 'remoteEntry.js',
+        remotes: {
+          "secondary-library": "SecondaryLibrary@//localhost:7102/remoteEntry.js",
+          // "primary-component-package/componentPackage": "tiangongPrimaryComponentPackage@//localhost:9001/remoteEntry.js",
+          // "primary-component-package/button": "tiangongPrimaryComponentPackage@//127.0.0.1:5501/remoteEntry.js"
+        },
+        // shared: { 'lodash': { singleton: true } },
       }),
       new HtmlWebpackPlugin({
-        title: 'Light测试',
+        title: 'LIGHT测试',
         template: './public/index.html'
       }),
       new CleanWebpackPlugin(),
-      // new webpack.HotModuleReplacementPlugin(),
     ],
     devServer: {
-      static: {
-        directory: path.join(__dirname, 'public'),
-      },
+      static: './dist',
       devMiddleware: {
         writeToDisk: WRITE_TO_DISK,
       },
       historyApiFallback: true,
-      liveReload: false,
-      hot: true,
+      hot: false,
       port: 7201,
     },
   };

@@ -4,13 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "lerna run start --scope=main-app",
-    "start:main-app": "lerna run start --scope=main-app",
-    "start:light-app": "lerna run start --scope=light-app",
-    "start:secondary-library": "lerna run start --scope=secondary-library",
-    "build:main-app": "lerna run build --scope=main-app",
-    "build:primary-library": "lerna run build --scope=primary-library",
-    "build:secondary-library": "lerna run build --scope=secondary-library"
+    "start": "lerna run start --scope light-app --scope secondary-library",
+    "start:main-app": "lerna run start --scope main-app",
+    "start:light-app": "lerna run start --scope light-app",
+    "start:secondary-library": "lerna run start --scope secondary-library",
+    "build:main-app": "lerna run build --scope main-app",
+    "build:light-app": "lerna run build --scope light-app",
+    "build:primary-library": "lerna run build --scope primary-library",
+    "build:secondary-library": "lerna run build --scope secondary-library",
+    "build:tertiary-library": "lerna run build --scope tertiary-library"
   },
   "dependencies": {},
   "devDependencies": {

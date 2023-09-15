@@ -6,7 +6,6 @@ const SimpleComponent: React.FC = memo(props => {
     console.log(`test work!`,);
   };
 
-
   return (
     <div>
       home
