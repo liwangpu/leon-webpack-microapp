@@ -10,7 +10,7 @@ module.exports = (env) => {
     entry: './lib/index.ts',
     output: {
       publicPath: 'auto',
-      path: path.resolve(__dirname, '../../dist/primary-library'),
+      path: path.resolve(__dirname, '../../dist/packages/primary-library'),
     },
     resolve: {
       extensions: ['.tsx', '.ts', '.js'],

@@ -1,4 +1,4 @@
-// import('./test');
+
 
 window.onload = () => {
 
@@ -7,8 +7,9 @@ window.onload = () => {
 
 };
 
-function handleTest() {
-  console.log('test');
+async function handleTest() {
+  const { test } = await import('./test');
+  test();
 }
 
 async function handleLoadSecondaryLibrary() {

@@ -1,20 +1,19 @@
 const path = require('path');
 const webpack = require("webpack");
 const { ModuleFederationPlugin } = webpack.container;
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-
-// const { dependencies } = require("./package.json");
+const CopyPlugin = require("copy-webpack-plugin");
 
 const WRITE_TO_DISK = true;
+
+const distDir = path.resolve(__dirname, '../../dist/packages/light-app');
 
 module.exports = (env) => {
   return {
     mode: 'development',
     devtool: false,
-    // cache: false,
-    // target: 'web',
+    cache: true,
     entry: {
       index: './src/main.ts',
     },
@@ -31,13 +30,8 @@ module.exports = (env) => {
       }
     },
     output: {
-      // publicPath: '/',
-      path: path.resolve(__dirname, '../../dist/light-app'),
-      clean: false,
-
-      // filename: '[name].bundle.js',
-      // path: path.resolve(__dirname, 'dist'),
-      // clean: true,
+      path: path.resolve(distDir),
+      clean: true,
     },
     resolve: {
       extensions: ['.tsx', '.ts', '.js'],
@@ -56,9 +50,6 @@ module.exports = (env) => {
       ],
     },
     plugins: [
-      // new MiniCssExtractPlugin({
-      //   experimentalUseImportModule: false,
-      // }),
       new ModuleFederationPlugin({
         name: 'app',
         // filename: 'remoteEntry.js',
@@ -71,12 +62,19 @@ module.exports = (env) => {
       }),
       new HtmlWebpackPlugin({
         title: 'LIGHT测试',
-        template: './public/index.html'
+        template: './public/index.html',
+        publicPath: '/',
+        filename: path.resolve(distDir, 'index.html'),
+      }),
+      new CopyPlugin({
+        patterns: [
+          { from: "public/assets", to: path.resolve(distDir, 'assets') },
+        ]
       }),
       new CleanWebpackPlugin(),
     ],
     devServer: {
-      static: './dist',
+      static: distDir,
       devMiddleware: {
         writeToDisk: WRITE_TO_DISK,
       },

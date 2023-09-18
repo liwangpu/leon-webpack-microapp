@@ -3,13 +3,8 @@
     "@babel/env",
     [
       "@babel/preset-react",
-      // {
-      //   "runtime": "automatic"
-      // },
       {
-        "targets": {
-          "esmodules": true
-        }
+        "runtime": "automatic"
       }
     ],
     "@babel/preset-typescript"

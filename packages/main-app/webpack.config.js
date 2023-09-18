@@ -29,7 +29,7 @@ module.exports = (env) => {
     },
     output: {
       publicPath: '/',
-      path: path.resolve(__dirname, '../../dist/main-app'),
+      path: path.resolve(__dirname, '../../dist/packages/main-app'),
       clean: false,
     },
     resolve: {

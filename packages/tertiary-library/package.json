@@ -5,7 +5,7 @@
   "license": "ISC",
   "main": "lib/index.js",
   "scripts": {
-    "build": "tsc -outDir ./temp --declaration --emitDeclarationOnly"
+    "build": "tsc --emitDeclarationOnly"
   },
   "dependencies": {
     "lodash": "^4.17.21",
