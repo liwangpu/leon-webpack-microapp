@@ -4,8 +4,10 @@
   "description": "> TODO: description",
   "license": "ISC",
   "main": "lib/index.js",
+  "type": "module",
   "scripts": {
-    "build": "tsc --emitDeclarationOnly"
+    "build1": "tsc --emitDeclarationOnly",
+    "build": "webpack"
   },
   "dependencies": {
     "lodash": "^4.17.21",

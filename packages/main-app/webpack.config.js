@@ -28,7 +28,6 @@ module.exports = (env) => {
       index: './src/main.tsx',
     },
     output: {
-      publicPath: '/',
       path: path.resolve(__dirname, '../../dist/packages/main-app'),
       clean: false,
     },
@@ -69,9 +68,9 @@ module.exports = (env) => {
       // new webpack.HotModuleReplacementPlugin(),
     ],
     devServer: {
-      static: {
-        directory: path.join(__dirname, 'public'),
-      },
+      // static: {
+      //   directory: path.join(__dirname, 'public'),
+      // },
       devMiddleware: {
         writeToDisk: WRITE_TO_DISK,
       },

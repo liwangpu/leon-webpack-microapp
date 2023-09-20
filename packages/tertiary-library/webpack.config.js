@@ -2,15 +2,16 @@ const path = require('path');
 const webpack = require('webpack');
 const { ModuleFederationPlugin } = webpack.container;
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { getProjectOutputDir } = require('../../tool');
 
 module.exports = (env) => {
   return {
+    // watch: true,
     mode: 'development',
     devtool: false,
     entry: './lib/index.ts',
     output: {
-      path: path.resolve(__dirname, '../../dist/packages/secondary-library'),
-      // filename: '[name].bundle.js',
+      path: getProjectOutputDir(),
     },
     resolve: {
       extensions: ['.tsx', '.ts', '.js'],
@@ -26,11 +27,11 @@ module.exports = (env) => {
     },
     plugins: [
       // new ModuleFederationPlugin({
-      //   name: 'secondary-library',
+      //   name: 'tertiary-library',
       //   filename: 'remoteEntry.js',
-      //   library: { type: 'var', name: 'SecondaryLibrary' },
+      //   library: { type: 'var', name: 'TertiaryLibrary' },
       //   exposes: {
-      //     './': './lib/index.ts',
+      //     // './': './lib/index.ts',
       //     './Util': './lib/util.ts',
       //   },
       //   // shared: {
@@ -46,11 +47,6 @@ module.exports = (env) => {
       new CleanWebpackPlugin(),
     ],
     devServer: {
-      static: {
-        directory: path.resolve(__dirname, '../../dist/packages/secondary-library'),
-        // serveIndex: true,
-      },
-      // static: './',
       devMiddleware: {
         writeToDisk: true,
       },
