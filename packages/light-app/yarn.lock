@@ -2076,6 +2076,11 @@ envinfo@^7.7.3:
   resolved "https://registry.npmjs.org/envinfo/-/envinfo-7.10.0.tgz#55146e3909cc5fe63c22da63fb15b05aeac35b13"
   integrity sha512-ZtUjZO6l5mwTHvc1L9+1q5p/R3wTopcfqMW8r5t8SJSKqeVI/LtajORwRFEKpEFuekjD0VBjwu1HMxL4UalIRw==
 
+eoncc-is-odd@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.npmjs.org/eoncc-is-odd/-/eoncc-is-odd-0.0.2.tgz#1dc0dc728361ce70f68841282db60f7f66a410eb"
+  integrity sha512-yOrCGpqx85DoHyARnY27mytLGk2TqcKFpfE4Tyv+lWaqEFhHbLQJG8TvXZDJfncHnjLAvHSEpdZ94zF2cG34eQ==
+
 errno@^0.1.1:
   version "0.1.8"
   resolved "https://registry.npmjs.org/errno/-/errno-0.1.8.tgz#8bb3e9c7d463be4976ff888f76b4809ebc2e811f"

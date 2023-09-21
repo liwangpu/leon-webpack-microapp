@@ -1,4 +1,4 @@
-
+import { isOdd } from 'eoncc-is-odd';
 
 window.onload = () => {
 
@@ -8,13 +8,15 @@ window.onload = () => {
 };
 
 async function handleTest() {
-  const { test } = await import('./test');
-  test();
+  // const { test } = await import('./test');
+  // test();
 }
 
 async function handleLoadSecondaryLibrary() {
   // @ts-ignore
-  const m = await import('secondary-library');
+  // const m = await import('tertiary-library');
   // m.add();
-  console.log(`m:`, m);
+  // console.log(`m:`, m);
+
+  console.log(`is odd:`, isOdd(1));
 }

@@ -25,6 +25,9 @@ module.exports = (env) => {
         },
       ],
     },
+    externals: {
+      "eoncc-is-odd": 'eonccIsOdd',
+    },
     plugins: [
       // new ModuleFederationPlugin({
       //   name: 'tertiary-library',

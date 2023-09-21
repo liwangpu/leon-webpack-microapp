@@ -1,20 +1,19 @@
 {
-  "name": "tertiary-library",
-  "version": "0.0.0",
-  "description": "> TODO: description",
-  "license": "ISC",
-  "main": "lib/index.js",
+  "name": "dll-library",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "build1": "tsc --emitDeclarationOnly",
     "build": "webpack"
   },
   "dependencies": {
+    "lodash": "^4.17.21",
+    "@faker-js/faker": "^8.0.2",
     "eoncc-is-odd": "^0.0.2"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.195",
     "@types/node": "18.14.2",
-    "@types/react": "18.2.14",
     "@babel/preset-react": "^7.22.15",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",
@@ -27,10 +26,7 @@
     "ts-loader": "^9.4.4",
     "clean-webpack-plugin": "^4.0.0"
   },
-  "directories": {
-    "lib": "lib"
-  },
-  "files": [
-    "lib"
-  ]
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

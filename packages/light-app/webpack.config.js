@@ -4,30 +4,21 @@ const { ModuleFederationPlugin } = webpack.container;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
+const { generateProjectInfo, generateDLLInfo } = require('../../tool');
 
+const project = generateProjectInfo();
+const dll = generateDLLInfo();
+const distDir = project.getDistDir();
+const assetDir = path.resolve(distDir, 'assets');
 const WRITE_TO_DISK = true;
-
-const distDir = path.resolve(__dirname, '../../dist/packages/light-app');
 
 module.exports = (env) => {
   return {
     mode: 'development',
     devtool: false,
-    cache: true,
+    // cache: true,
     entry: {
       index: './src/main.ts',
-    },
-    optimization: {
-      runtimeChunk: 'single',
-      splitChunks: {
-        cacheGroups: {
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendors',
-            chunks: 'all'
-          }
-        }
-      }
     },
     output: {
       path: path.resolve(distDir),
@@ -50,6 +41,10 @@ module.exports = (env) => {
       ],
     },
     plugins: [
+      new webpack.DllReferencePlugin({
+        context: dll.getDLLDir(),
+        manifest: require(dll.getManifest()),
+      }),
       new ModuleFederationPlugin({
         name: 'app',
         // filename: 'remoteEntry.js',
@@ -68,13 +63,17 @@ module.exports = (env) => {
       }),
       new CopyPlugin({
         patterns: [
-          { from: "public/assets", to: path.resolve(distDir, 'assets') },
+          { from: "public/assets", to: assetDir },
+          { from: dll.getDLLJsDir(), to: path.resolve(assetDir, 'js') },
         ]
       }),
       new CleanWebpackPlugin(),
     ],
     devServer: {
-      static: distDir,
+      static: {
+        directory: assetDir,
+        publicPath: '/assets'
+      },
       devMiddleware: {
         writeToDisk: WRITE_TO_DISK,
       },

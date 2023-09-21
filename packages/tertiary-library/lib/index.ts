@@ -1,2 +1,3 @@
-export * from './enums';
-export * from './consts';
+export function add() {
+  console.log(`add function work!`, true);
+}

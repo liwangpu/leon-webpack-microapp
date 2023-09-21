@@ -1,1 +1,0 @@
-export const TERTIARY_VERSION = 1;

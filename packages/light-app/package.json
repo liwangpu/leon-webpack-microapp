@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "lodash": "^4.17.21",
-    "@faker-js/faker": "^8.0.2"
+    "@faker-js/faker": "^8.0.2",
+    "eoncc-is-odd": "^0.0.2"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.195",
