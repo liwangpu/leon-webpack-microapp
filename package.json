@@ -19,7 +19,8 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "lerna": "^7.2.0"
+    "lerna": "^7.2.0",
+    "webpack": "^5.88.2"
   },
   "repository": {
     "type": "git",

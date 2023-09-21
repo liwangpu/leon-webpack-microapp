@@ -2,7 +2,9 @@ const path = require('path');
 const webpack = require('webpack');
 const { ModuleFederationPlugin } = webpack.container;
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const { getProjectOutputDir } = require('../../tool');
+const { generateProjectInfo } = require('../../tool');
+
+const project = generateProjectInfo();
 
 module.exports = (env) => {
   return {
@@ -11,7 +13,7 @@ module.exports = (env) => {
     devtool: false,
     entry: './lib/index.ts',
     output: {
-      path: getProjectOutputDir(),
+      path: project.getDistDir(),
     },
     resolve: {
       extensions: ['.tsx', '.ts', '.js'],
@@ -24,9 +26,6 @@ module.exports = (env) => {
           loader: "babel-loader",
         },
       ],
-    },
-    externals: {
-      "eoncc-is-odd": 'eonccIsOdd',
     },
     plugins: [
       // new ModuleFederationPlugin({
