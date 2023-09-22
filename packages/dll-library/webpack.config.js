@@ -1,40 +1,43 @@
 const path = require('path');
-const webpack = require("webpack");
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const { generateDLLInfo } = require('../../tool');
+const webpack = require('webpack');
+const { generateProjectInfo, generateDLLInfo } = require('../../tool');
 
+const project = generateProjectInfo();
 const dll = generateDLLInfo();
+const distDir = project.getDistDir();
 
-module.exports = () => {
+module.exports = (env) => {
   return {
+    // watch: true,
     mode: 'development',
     devtool: false,
-    cache: true,
-    entry: {
-      vendor: [
-        'eoncc-is-odd'
-      ],
-    },
+    entry: './src/main.ts',
     output: {
-      path: dll.getDLLJsDir(), // 打包后文件输出的位置
-      filename: '[name].dll.js',
-      library: '[name]_library'
+      path: distDir,
     },
     resolve: {
       extensions: ['.tsx', '.ts', '.js'],
     },
     module: {
       rules: [
-
+        {
+          test: /\.[jt]sx?$/,
+          exclude: /node_modules/,
+          loader: "babel-loader",
+        },
       ],
     },
     plugins: [
-      new CleanWebpackPlugin(),
-      new webpack.DllPlugin({
-        path: path.join(dll.getDLLDir(), '[name]-manifest.json'),
-        name: '[name]_library',
-        context: dll.getDLLDir()
-      }),
+      dll.useDLLOutputPlugin(),
     ],
+    devServer: {
+      devMiddleware: {
+        writeToDisk: true,
+      },
+      client: false,
+      hot: false,
+      historyApiFallback: true,
+      port: 7102,
+    },
   };
 };

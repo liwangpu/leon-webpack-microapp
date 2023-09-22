@@ -8,7 +8,6 @@
     "start1": "lerna run start --scope main-app",
     "start:main-app": "lerna run start --scope main-app",
     "start:light-app": "lerna run start --scope light-app",
-    "start:light-app:dll": "lerna run build:dll --scope light-app",
     "start:secondary-library": "lerna run start --scope secondary-library",
     "build:main-app": "lerna run build --scope main-app",
     "build:light-app": "lerna run build --scope light-app",

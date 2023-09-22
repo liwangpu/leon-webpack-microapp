@@ -2,9 +2,10 @@ const path = require('path');
 const webpack = require('webpack');
 const { ModuleFederationPlugin } = webpack.container;
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const { generateProjectInfo } = require('../../tool');
+const { generateProjectInfo, generateDLLInfo } = require('../../tool');
 
 const project = generateProjectInfo();
+const dll = generateDLLInfo();
 
 module.exports = (env) => {
   return {
@@ -28,6 +29,7 @@ module.exports = (env) => {
       ],
     },
     plugins: [
+      dll.useDLLOutputPlugin(),
       // new ModuleFederationPlugin({
       //   name: 'tertiary-library',
       //   filename: 'remoteEntry.js',

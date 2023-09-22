@@ -1,5 +1,5 @@
 const path = require('path');
-// const webpack = require('webpack');
+const webpack = require('webpack');
 
 const rootDistDir = path.resolve(__dirname, '../dist');
 
@@ -21,6 +21,9 @@ function generateProjectInfo() {
     getProjectName() {
       return projectName;
     },
+    getProjectDir() {
+      return cwd;
+    },
     /**
      * 获取当前项目编译dist文件夹
      * @returns 
@@ -37,15 +40,8 @@ function generateProjectInfo() {
  */
 function generateDLLInfo() {
   const dllLibrary = 'dll-library';
-  const dllDir = path.resolve(rootDistDir, dllLibrary)
+  const dllDir = path.resolve(rootDistDir, dllLibrary);
   return {
-    /**
-     * DLL项目编译manifest.json文件
-     * @returns 
-     */
-    getManifest() {
-      return path.resolve(dllDir, 'vendor-manifest.json');
-    },
     /**
      * DLL项目编译dist文件夹
      * @returns 
@@ -61,17 +57,21 @@ function generateDLLInfo() {
       return path.resolve(dllDir, 'js');
     },
     useDLLBuilderPlugin() {
-
+      return new webpack.DllPlugin({
+        // context: this.getDLLJsDir(),
+        // context: dllDir,
+        name: '[name]_[fullhash]',
+        path: path.join(dllDir, 'manifest.json'),
+      })
     },
     useDLLOutputPlugin() {
-      // return new webpack.DllReferencePlugin({
-      //   context: dll.getDLLDir(),
-      //   manifest: require(dll.getManifest()),
-      // });
+      return new webpack.DllReferencePlugin({
+        // context: dllDir,
+        // context: this.getDLLJsDir(),
+        manifest: require(path.resolve(dllDir, './manifest.json')),
+      });
     },
   };
 }
-
-
 
 module.exports = { generateProjectInfo, generateDLLInfo };

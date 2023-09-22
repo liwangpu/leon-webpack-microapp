@@ -4,15 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack"
+    "build": "webpack --config webpack.dll.config.js",
+    "build:test": "webpack"
   },
   "dependencies": {
-    "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21",
     "@faker-js/faker": "^8.0.2",
     "eoncc-is-odd": "^0.0.2"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.195",
+    "@types/lodash-es": "^4.17.9",
     "@types/node": "18.14.2",
     "@babel/preset-react": "^7.22.15",
     "webpack": "^5.88.2",

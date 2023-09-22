@@ -18,5 +18,5 @@ async function handleLoadSecondaryLibrary() {
   // m.add();
   // console.log(`m:`, m);
 
-  console.log(`is odd:`, isOdd(1));
+  console.log(`is odd:`, isOdd('xxxx'));
 }

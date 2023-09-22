@@ -41,20 +41,17 @@ module.exports = (env) => {
       ],
     },
     plugins: [
-      new webpack.DllReferencePlugin({
-        context: dll.getDLLDir(),
-        manifest: require(dll.getManifest()),
-      }),
-      new ModuleFederationPlugin({
-        name: 'app',
-        // filename: 'remoteEntry.js',
-        remotes: {
-          "secondary-library": "SecondaryLibrary@//localhost:7102/remoteEntry.js",
-          // "primary-component-package/componentPackage": "tiangongPrimaryComponentPackage@//localhost:9001/remoteEntry.js",
-          // "primary-component-package/button": "tiangongPrimaryComponentPackage@//127.0.0.1:5501/remoteEntry.js"
-        },
-        // shared: { 'lodash': { singleton: true } },
-      }),
+      dll.useDLLOutputPlugin(),
+      // new ModuleFederationPlugin({
+      //   name: 'app',
+      //   // filename: 'remoteEntry.js',
+      //   remotes: {
+      //     "secondary-library": "SecondaryLibrary@//localhost:7102/remoteEntry.js",
+      //     // "primary-component-package/componentPackage": "tiangongPrimaryComponentPackage@//localhost:9001/remoteEntry.js",
+      //     // "primary-component-package/button": "tiangongPrimaryComponentPackage@//127.0.0.1:5501/remoteEntry.js"
+      //   },
+      //   // shared: { 'lodash': { singleton: true } },
+      // }),
       new HtmlWebpackPlugin({
         title: 'LIGHT测试',
         template: './public/index.html',
@@ -64,7 +61,7 @@ module.exports = (env) => {
       new CopyPlugin({
         patterns: [
           { from: "public/assets", to: assetDir },
-          { from: dll.getDLLJsDir(), to: path.resolve(assetDir, 'js') },
+          { from: path.resolve(dll.getDLLDir(), 'vendor.dll.js'), to: path.resolve(assetDir, 'js') },
         ]
       }),
       new CleanWebpackPlugin(),
