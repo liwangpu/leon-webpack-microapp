@@ -1,14 +1,12 @@
 {
   "presets": [
-    "@babel/env",
+    "@babel/preset-typescript",
     [
-      "@babel/preset-react",
+      "@babel/preset-env",
       {
-        "targets": "> 0.25%, not dead",
-        "useBuiltIns": false,
-        "corejs": 3
+        "useBuiltIns": "entry",
+        "targets": "> 0.25%, not dead"
       }
-    ],
-    "@babel/preset-typescript"
+    ]
   ]
 }

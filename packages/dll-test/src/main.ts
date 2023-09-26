@@ -3,13 +3,15 @@ import { isOdd } from 'eoncc-is-odd';
 window.onload = () => {
 
   document.getElementById('btnTest').addEventListener('click', handleTest);
-  document.getElementById('btnLoadSecondaryLib').addEventListener('click', handleLoadSecondaryLibrary);
 
 };
 
 async function handleTest() {
-  // const { test } = await import('./test');
-  // test();
+  try {
+    console.log(`is odd:`, isOdd('xxxx'));
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 async function handleLoadSecondaryLibrary() {
@@ -18,5 +20,5 @@ async function handleLoadSecondaryLibrary() {
   // m.add();
   // console.log(`m:`, m);
 
-  console.log(`is odd:`, isOdd(11));
+
 }

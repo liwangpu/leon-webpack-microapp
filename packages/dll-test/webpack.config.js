@@ -1,14 +1,10 @@
 const path = require('path');
 const webpack = require("webpack");
-const { ModuleFederationPlugin } = webpack.container;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
-const { generateProjectInfo, generateDLLInfo } = require('../../tool');
 
-const project = generateProjectInfo();
-const dll = generateDLLInfo();
-const distDir = project.getDistDir();
+const distDir = path.resolve(__dirname, 'dist');
 const assetDir = path.resolve(distDir, 'assets');
 const WRITE_TO_DISK = true;
 
@@ -22,7 +18,7 @@ module.exports = (env) => {
     },
     output: {
       path: path.resolve(distDir),
-      clean: true,
+      clean: false,
     },
     resolve: {
       extensions: ['.tsx', '.ts', '.js'],
@@ -41,19 +37,8 @@ module.exports = (env) => {
       ],
     },
     plugins: [
-      // dll.useDLLOutputPlugin(),
-      // new ModuleFederationPlugin({
-      //   name: 'app',
-      //   // filename: 'remoteEntry.js',
-      //   remotes: {
-      //     "secondary-library": "SecondaryLibrary@//localhost:7102/remoteEntry.js",
-      //     // "primary-component-package/componentPackage": "tiangongPrimaryComponentPackage@//localhost:9001/remoteEntry.js",
-      //     // "primary-component-package/button": "tiangongPrimaryComponentPackage@//127.0.0.1:5501/remoteEntry.js"
-      //   },
-      //   // shared: { 'lodash': { singleton: true } },
-      // }),
       new HtmlWebpackPlugin({
-        title: 'LIGHT测试',
+        title: 'DLL测试',
         template: './public/index.html',
         publicPath: '/',
         filename: path.resolve(distDir, 'index.html'),
@@ -61,24 +46,17 @@ module.exports = (env) => {
       new CopyPlugin({
         patterns: [
           { from: "public/assets", to: assetDir },
-          // { from: path.resolve(dll.getDLLDir(), 'vendor.dll.js'), to: path.resolve(assetDir, 'js') },
+          { from: path.resolve(distDir, 'vendor.dll.js'), to: path.resolve(assetDir, 'js') },
+          { from: path.resolve(distDir, 'manifest.json'), to: path.resolve(assetDir, 'js') },
         ]
       }),
-      new CleanWebpackPlugin(),
+      new webpack.DllReferencePlugin({
+        context: distDir,
+        // context: this.getDLLJsDir(),
+        manifest: require(path.resolve(distDir, './manifest.json')),
+      })
+      // new CleanWebpackPlugin(),
     ],
-    optimization: {
-      moduleIds: 'deterministic',
-      runtimeChunk: 'single',
-      splitChunks: {
-        cacheGroups: {
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendors',
-            chunks: 'all'
-          }
-        }
-      }
-    },
     devServer: {
       static: {
         directory: assetDir,
