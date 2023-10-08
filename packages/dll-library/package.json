@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.dll.config.js",
-    "build:test": "webpack"
+    "build:main": "webpack",
+    "build:test": "webpack --config webpack.test.config.js"
   },
   "dependencies": {
     "lodash-es": "^4.17.21",

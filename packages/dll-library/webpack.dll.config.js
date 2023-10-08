@@ -34,7 +34,7 @@ module.exports = () => {
     },
     plugins: [
       new CleanWebpackPlugin(),
-      dll.useDLLBuilderPlugin(),
+      // dll.useDLLBuilderPlugin(),
     ],
   };
 };
